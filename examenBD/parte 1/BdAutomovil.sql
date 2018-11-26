@@ -53,7 +53,7 @@ CREATE TABLE revision(
 	cambio_filtro BOOLEAN,
 	cambio_aceite BOOLEAN,
 	cambio_freno BOOLEAN,
-	reviiones_extras TEXT,
+	revisiones_extras TEXT,
 	
 	PRIMARY KEY(id),
 	FOREIGN KEY (cliente_id_fk) REFERENCES cliente(id),
