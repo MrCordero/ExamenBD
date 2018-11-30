@@ -66,26 +66,39 @@ INSERT INTO cliente VALUES(NULL,'142-5','Florencia','la granja #1873','Rancagua'
 INSERT INTO cliente VALUES(NULL,'111-1','Mila','Santa cruz #1343','Rancagua','+56978452255');
 INSERT INTO cliente VALUES(NULL,'222-2','Constanza','juan strane #1085','Rancagua','+56945874587');
 
---CREATE TABLE venta(
-	--id INT AUTO_INCREMENT,
-
---);
+CREATE TABLE venta(
+	id INT AUTO_INCREMENT,
+	vehiculo_id_fk,
+	cliente_id_fk,
+	fecha DATE,
+	
+	PRIMARY KEY(id),
+	FOREIGN KEY(vehiculo_id_fk) REFERENCES vehiculo(id),
+	FOREIGN KEY(cliente_id_fk) REFERENCES cliente(id)
+);
 
 CREATE TABLE revision(
 	id INT AUTO_INCREMENT,
-	cliente_id_fk INT,
-	vehiculo_id_fk INT,
 	cambio_filtro BOOLEAN,
 	cambio_aceite BOOLEAN,
 	cambio_freno BOOLEAN,
 	revisiones_extras TEXT,
 	
 	PRIMARY KEY(id),
-	FOREIGN KEY (cliente_id_fk) REFERENCES cliente(id),
+	FOREIGN KEY (cliente_id_fk) REFERENCES cliente(id),		
 	FOREIGN KEY (vehiculo_id_fk) REFERENCES vehiculo(id)
 );
 
-
+CREATE TABLE detalle_revision(
+	id INT AUTO_INCREMENT,
+	vehiculo_id_fk INT,
+	revision_id_fk INT,
+	detalle TEXT,
+	
+	PRIMARY KEY(id),
+	FOREIGN KEY(vehiculo_id_fk) REFERENCES vehiculo(id),
+	FOREIGN KEY(revision_id_fk) REFERENCES revision(id)
+);
 
 
 
